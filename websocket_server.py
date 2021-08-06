@@ -189,8 +189,8 @@ def get_data(addon_prefs, diff):
     
     if 'CAMERAS' in addon_prefs.data_to_send:
         fill("cameras", bpy.data.cameras)
-    if 'LAMPS' in addon_prefs.data_to_send:
-        fill("lamps", bpy.data.lamps)
+    if 'LIGHTS' in addon_prefs.data_to_send:
+        fill("lights", bpy.data.lights)
     if 'OBJECTS' in addon_prefs.data_to_send:
         fill("objects", bpy.data.objects)
     if 'WORLDS' in addon_prefs.data_to_send:
@@ -376,7 +376,7 @@ class WebSocketServerSettings(AddonPreferences):
             ('FONTS', "Fonts", "Font data"),
             ('GREASE_PENCILS', "Grease pencils", "Grease pencil data"),
             ('IMAGES', "Images", "Image data"),
-            ('LAMPS', "Lamps", "Lamp data"),
+            ('LIGHTS', "Lights", "Light data"),
             ('MASKS', "Masks", "Mask data"),
             ('MATERIALS', "Materials", "Material data"),
             ('MESHES', "Meshes", "Mesh data"),
