@@ -229,7 +229,7 @@ def broadcast(sockets, message):
         socket.send(message)
 
 def send_state(sockets):
-    addon_prefs = bpy.context.user_preferences.addons[__name__].preferences
+    addon_prefs = bpy.context.preferences.addons[__name__].preferences
     
     broadcast(sockets, stringify(("app", {
         "version": bpy.app.version,
@@ -272,7 +272,7 @@ def load_post():
 
 @persistent
 def scene_update_post(scene):
-    addon_prefs = bpy.context.user_preferences.addons[__name__].preferences
+    addon_prefs = bpy.context.preferences.addons[__name__].preferences
     
     data = get_data(addon_prefs, True)
     if data:
@@ -427,7 +427,7 @@ class Start(Operator):
     bl_label = "Start WebSocket server"
     
     def execute(self, context):
-        addon_prefs = context.user_preferences.addons[__name__].preferences
+        addon_prefs = context.preferences.addons[__name__].preferences
         if not start_server(str(addon_prefs.host), int(addon_prefs.port)):
             self.report({"ERROR"}, "The server is already started.")
             return {"CANCELLED"}
