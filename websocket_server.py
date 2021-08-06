@@ -444,8 +444,12 @@ class Stop(Operator):
             return {"CANCELLED"}
         return {"FINISHED"}
     
+classes = ( WebSocketServerSettings, Start, Stop)
+
 def register():
-    bpy.utils.register_module(__name__)
+    from bpy.utils import register_class
+    for c in classes:
+        register_class(c)
     
     addon_prefs = bpy.context.user_preferences.addons[__name__].preferences
     if bool(addon_prefs.auto_start):
@@ -453,7 +457,10 @@ def register():
 
 def unregister():
     stop_server()
-    bpy.utils.unregister_module(__name__)
+    from bpy.utils import unregister_class
+    for c in classes:
+        unregister_class(c)
+
     
 if __name__ == "__main__":
     register()
