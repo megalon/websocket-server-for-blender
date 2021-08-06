@@ -403,7 +403,7 @@ class WebSocketServerSettings(AddonPreferences):
         layout = self.layout
         
         row = layout.row()
-        split = row.split(percentage=0.3)
+        split = row.split(factor=0.3)
         
         col = split.column()
         col.prop(self, "host")
@@ -418,7 +418,7 @@ class WebSocketServerSettings(AddonPreferences):
             col.operator(Start.bl_idname, icon='QUIT', text="Start server")
             
         col = split.column()
-        col.label("Data to send:", icon='RECOVER_LAST')
+        col.label(text="Data to send:", icon='RECOVER_LAST')
         col.prop(self, "data_to_send", expand=True)
 
 class Start(Operator):
