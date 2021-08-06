@@ -344,19 +344,19 @@ def stop_server():
 class WebSocketServerSettings(AddonPreferences):
     bl_idname = __name__
     
-    auto_start = BoolProperty(
+    auto_start : BoolProperty(
         name="Start automatically",
         description="Automatically start the server when loading the add-on",
         default=True
     )
     
-    host = StringProperty(
+    host : StringProperty(
         name="Host",
         description="Listen on host:port",
         default="localhost"
     )
     
-    port = IntProperty(
+    port : IntProperty(
         name="Port",
         description="Listen on host:port",
         default=8137,
@@ -365,7 +365,7 @@ class WebSocketServerSettings(AddonPreferences):
         subtype="UNSIGNED"
     )
     
-    data_to_send = EnumProperty(
+    data_to_send : EnumProperty(
         items=[
             ('ACTIONS', "Actions", "Action data"),
             ('ARMATURES', "Armatures", "Armature data"),
