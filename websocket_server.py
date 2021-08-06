@@ -451,9 +451,9 @@ def register():
     for c in classes:
         register_class(c)
     
-    addon_prefs = bpy.context.user_preferences.addons[__name__].preferences
-    if bool(addon_prefs.auto_start):
-        start_server(str(addon_prefs.host), int(addon_prefs.port))
+    addon_prefs = bpy.context.preferences.addons[__name__].preferences
+    #if bool(addon_prefs.auto_start):
+    #    start_server(str(addon_prefs.host), int(addon_prefs.port))
 
 def unregister():
     stop_server()
