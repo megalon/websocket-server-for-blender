@@ -271,7 +271,7 @@ def load_post():
     send_state(sockets)
 
 @persistent
-def scene_update_post(scene):
+def depsgraph_update_post(scene):
     addon_prefs = bpy.context.preferences.addons[__name__].preferences
     
     data = get_data(addon_prefs, True)
@@ -320,7 +320,7 @@ def start_server(host, port):
     wserver_thread.start()
     
     bpy.app.handlers.load_post.append(load_post)
-    bpy.app.handlers.scene_update_post.append(scene_update_post)
+    bpy.app.handlers.depsgraph_update_post.append(depsgraph_update_post)
     
     return True
 
@@ -336,7 +336,7 @@ def stop_server():
     wserver = None
     
     bpy.app.handlers.load_post.remove(load_post)
-    bpy.app.handlers.scene_update_post.remove(scene_update_post)
+    bpy.app.handlers.depsgraph_update_post.remove(depsgraph_update_post)
     
     return True
 
