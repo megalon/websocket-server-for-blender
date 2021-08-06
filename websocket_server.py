@@ -6,8 +6,8 @@
 bl_info = {
     "name": "WebSocket server",
     "author": "Jonathan Giroux (Bloutiouf)",
-    "version": (0, 1, 0),
-    "blender": (2, 69, 0),
+    "version": (0, 2, 0),
+    "blender": (2, 93, 0),
     "description": "Send Blender's state over a WebSocket connection.",
     "category": "Import-Export"
 }
