@@ -267,11 +267,11 @@ class WebSocketApp(_WebSocket):
         message_queue.put(data)
     
 @persistent
-def load_post():
+def ws_load_post():
     send_state(sockets)
 
 @persistent
-def depsgraph_update_post(scene):
+def ws_depsgraph_update_post(scene):
     addon_prefs = bpy.context.preferences.addons[__name__].preferences
     
     data = get_data(addon_prefs, True)
@@ -319,8 +319,8 @@ def start_server(host, port):
     wserver_thread.daemon = True
     wserver_thread.start()
     
-    bpy.app.handlers.load_post.append(load_post)
-    bpy.app.handlers.depsgraph_update_post.append(depsgraph_update_post)
+    bpy.app.handlers.load_post.append(ws_load_post)
+    bpy.app.handlers.depsgraph_update_post.append(ws_depsgraph_update_post)
     
     return True
 
@@ -335,8 +335,8 @@ def stop_server():
         
     wserver = None
     
-    bpy.app.handlers.load_post.remove(load_post)
-    bpy.app.handlers.depsgraph_update_post.remove(depsgraph_update_post)
+    bpy.app.handlers.load_post.remove(ws_load_post)
+    bpy.app.handlers.depsgraph_update_post.remove(ws_depsgraph_update_post)
     
     return True
 
