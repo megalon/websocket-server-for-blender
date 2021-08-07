@@ -164,7 +164,8 @@ def get_context(addon_prefs, diff):
     
     current_context = {
         "filePath": bpy.data.filepath,
-        "selectedObjects": hasattr(bpy.context, "selected_objects") and list(object.name for object in bpy.context.selected_objects)
+        "selectedObjects": hasattr(bpy.context, "selected_objects") and list(object.name for object in bpy.context.selected_objects),
+        "currentBrush": bpy.context.tool_settings.image_paint.brush
     }
     
     if previous_context == current_context and diff:
