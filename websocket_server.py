@@ -32,6 +32,11 @@ class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         # print(type(obj))
         
+        if isinstance(obj, bpy.types.Brush):
+            return {
+                "color": obj.color
+            }
+        
         if isinstance(obj, bpy.types.BlendData):
             return {
                 "objects": list(self.default(object) for object in obj.objects)
@@ -189,6 +194,8 @@ def get_data(addon_prefs, diff):
             if len(data[name]) == 0 and diff:
                 del data[name]
     
+    if 'BRUSHES' in addon_prefs.data_to_send:
+        fill("brushes", bpy.data.brushes)
     if 'CAMERAS' in addon_prefs.data_to_send:
         fill("cameras", bpy.data.cameras)
     if 'LIGHTS' in addon_prefs.data_to_send:
