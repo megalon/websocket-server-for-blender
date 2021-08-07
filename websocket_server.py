@@ -182,7 +182,8 @@ def get_data(addon_prefs, diff):
                     if n not in collection:
                         data[name][n] = None
             for obj in collection:
-                if obj.is_updated or not diff:
+                # if obj.is_updated or not diff:
+                if not diff:
                     data[name][obj.name] = obj
             previous_data_keys[name] = collection.keys()
             if len(data[name]) == 0 and diff:
