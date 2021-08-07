@@ -62,7 +62,7 @@ class JSONEncoder(json.JSONEncoder):
                 r["data"] = obj.data.name
             return r
             
-        if isinstance(obj, bpy.types.PointLamp):
+        if isinstance(obj, bpy.types.PointLight):
             return {
                 "color": self.default(obj.color),
                 "power": obj.energy * 8 + 10,
@@ -74,7 +74,7 @@ class JSONEncoder(json.JSONEncoder):
                 "camera": obj.camera.name if obj.camera else None
             }
             
-        if isinstance(obj, bpy.types.SpotLamp):
+        if isinstance(obj, bpy.types.SpotLight):
             return {
                 "angle": obj.spot_size / 2,
                 "blend": obj.spot_blend,
@@ -83,7 +83,7 @@ class JSONEncoder(json.JSONEncoder):
                 "type": obj.type
             }
             
-        if isinstance(obj, bpy.types.SunLamp):
+        if isinstance(obj, bpy.types.SunLight):
             return {
                 "color": self.default(obj.color),
                 "power": obj.energy * 8 + 10,
