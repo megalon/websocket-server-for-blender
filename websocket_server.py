@@ -174,7 +174,8 @@ def get_data(addon_prefs, diff):
     data = {}
     
     def fill(name, collection):
-        if collection.is_updated or not diff:
+        #if collection.is_updated or not diff:
+        if not diff:
             data[name] = {}
             if name in previous_data_keys:
                 for n in previous_data_keys[name]:
@@ -206,7 +207,7 @@ def get_scene(scene, addon_prefs, diff):
     previous_scene = previous_scenes.get(scene.name, None)
     
     current_scene = {
-        "activeObject": scene.objects.active and scene.objects.active.name,
+        # "activeObject": scene.objects.active and scene.objects.active.name,
         "camera": scene.camera and scene.camera.name,
         "fps": scene.render.fps / scene.render.fps_base,
         "frame": scene.frame_current,
@@ -240,11 +241,11 @@ def send_state(sockets):
     if data:
         broadcast(sockets, stringify(("data", data)))
     
-    if 'SCENES' in addon_prefs.data_to_send:
-        for scene in bpy.data.scenes:
-            data = get_scene(scene, addon_prefs, False)
-            if data:
-                broadcast(sockets, stringify(("scene", scene.name, data)))
+    #if 'SCENES' in addon_prefs.data_to_send:
+    #    for scene in bpy.data.scenes:
+    #        data = get_scene(scene, addon_prefs, False)
+    #        if data:
+    #            broadcast(sockets, stringify(("scene", scene.name, data)))
     
     if 'CONTEXT' in addon_prefs.data_to_send:
         data = get_context(addon_prefs, False)
